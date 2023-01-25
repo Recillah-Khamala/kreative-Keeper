@@ -44,7 +44,7 @@
   <summary>Client</summary>
   <ul>
     <li><a href="https://html.com/">HTML</a></li>
-    <li><a href="hhttps://www.w3schools.com/css/">CSS</a></li>
+    <li><a href="https://www.w3schools.com/css/">CSS</a></li>
     <li><a href="https://www.javascript.com/">JavaScript</a></li>
   </ul>
 </details>
