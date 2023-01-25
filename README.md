@@ -44,19 +44,7 @@
   <summary>Client</summary>
   <ul>
     <li><a href="https://html.com/">HTML</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>Client</summary>
-  <ul>
     <li><a href="hhttps://www.w3schools.com/css/">CSS</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>Client</summary>
-  <ul>
     <li><a href="https://www.javascript.com/">JavaScript</a></li>
   </ul>
 </details>
@@ -65,6 +53,7 @@
   <summary>Server</summary>
   <ul>
     <li><a href="https://guides.rubyonrails.org/">Ruby on Rails</a></li>
+    <li><a href="https:https://www.ruby-lang.org/en/">Ruby</a></li>
   </ul>
 </details>
 
