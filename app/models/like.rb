@@ -5,6 +5,7 @@ class Like < ApplicationRecord
   belongs_to :post
 
   private
+
   def update_likescounter
     post.increment!(:likescounter)
   end
