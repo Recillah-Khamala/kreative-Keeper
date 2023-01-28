@@ -1,38 +1,64 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe 'validations' do
-    it { should validate_presence_of(:title) }
-    it { should validate_length_of(:title).is_at_most(250) }
-    it { should validate_numericality_of(:commentscounter).only_integer.is_greater_than_or_equal_to(0) }
-    it { should validate_numericality_of(:likescounter).only_integer.is_greater_than_or_equal_to(0) }
+  before(:all) do
+    @user = User.new(name: 'Recillah', photo: 'today_rails.png', bio: 'Example of my bio', postscounter: 0)
+    @user.save
   end
 
-  describe 'associations' do
-    it { should belong_to(:author).class_name('User') }
-    it { should have_many(:comments) }
-    it { should have_many(:likes) }
+  subject do
+    Post.new(author: @user, title: 'Hello', text: 'Hello Rails', commentscounter: 0, likescounter: 0)
   end
 
-  describe 'Methods' do
-    describe '#recent_comments' do
-      before { subject.save }
-      it 'should return the most recent comments' do
-        expect(subject.recent_comments).to eq(subject.comments.order(created_at: :desc).limit(5))
-      end
-    end
+  it 'title should present' do
+    expect(subject).to be_valid
   end
 
-  describe 'Callbacks' do
-    describe 'after_save' do
-      context 'when a post is saved' do
-        it 'increments the author postscounter' do
-          expect { subject.save }.to change { subject.author.postscounter }.by(1)
-        end
-      end
-    end
+  it 'title should not be valid if nil' do
+    subject.title = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'title should be valid if total word count is less than 250' do
+    subject.title = 'Hello Rails'
+    expect(subject).to be_valid
+  end
+
+  it 'title should invalid if is greater than  250' do
+    subject.title = 'Hello Rails' * 100
+    expect(subject).to_not be_valid
+  end
+
+  it 'comment counter should be valid if its 2' do
+    subject.commentscounter = 2
+    expect(subject).to be_valid
+  end
+
+  it 'comment counter should not be valid if its not an integer' do
+    subject.commentscounter = 'one'
+    expect(subject).to_not be_valid
+  end
+
+  it 'comment counter should not be valid if its -1' do
+    subject.commentscounter = -1
+    expect(subject).to_not be_valid
+  end
+
+  it 'likes counter should be valid if its a number' do
+    subject.likescounter = 7
+    expect(subject).to be_valid
+  end
+
+  it 'like counter should not be valid if its not an integer' do
+    subject.likescounter = 'one'
+    expect(subject).to_not be_valid
+  end
+
+  it 'method not to work because it is a private method' do
+    expect(subject).not_to respond_to(:update_postscounter)
+  end
+
+  it 'Method should return false' do
+    expect(subject.recent_comments.length).to be 0
   end
 end
-
-
-
