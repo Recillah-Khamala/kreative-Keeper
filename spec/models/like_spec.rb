@@ -1,21 +1,22 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe Like, type: :model do
-#   describe "Validations" do
-#     it { is_expected.to validate_presence_of(:author) }
-#     it { is_expected.to validate_presence_of(:post) }
-#   end
+RSpec.describe Like, type: :model do
+  before(:all) do
+    @user = User.new(name: 'Recillah', postscounter: 0)
+    @user.save
 
-#   describe "Associations" do
-#     it { is_expected.to belong_to(:author).class_name("User") }
-#     it { is_expected.to belong_to(:post) }
-#   end
+    @post = Post.new(title: 'All Rails', text: 'Lets talk about Rails', commentscounter: 1, likescounter: 0,
+                     author: @user)
+    @post.save
+  end
 
-#   describe "#update_likescounter" do
-#     let(:like) { create(:like) }
+  subject { Like.create(author: @user, post: @post) }
 
-#     it "increments the likes counter of the associated post" do
-#       expect { like.update_likescounter }.to change { like.post.likescounter }.by(1)
-#     end
-#   end
-# end
+  it 'likes counter is incremented by 1' do
+    expect(@post.likescounter).to be_truthy
+  end
+
+  it 'cannot update likes count because it is private ' do
+    expect(subject).not_to respond_to(:update_likescounter)
+  end
+end
