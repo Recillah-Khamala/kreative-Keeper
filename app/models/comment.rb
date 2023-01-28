@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   # validations
   validates :author, presence: true
   validates :post, presence: true
-  validates :content, presence: true
+  validates :text, presence: true
 
   private
 

@@ -1,22 +1,24 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe Comment, type: :model do
-#   describe "Validations" do
-#     it { is_expected.to validate_presence_of(:author) }
-#     it { is_expected.to validate_presence_of(:post) }
-#     it { is_expected.to validate_presence_of(:content) }
-#   end
+RSpec.describe Comment, type: :model do
+  before(:all) do
+    @user = User.new(name: 'first_user', postscounter: 0)
+    @user.save
 
-#   describe "Associations" do
-#     it { is_expected.to belong_to(:author).class_name("User") }
-#     it { is_expected.to belong_to(:post) }
-#   end
+    @post = Post.new(title: 'Rails', text: 'Validations in ruby on rails', commentscounter: 0, likescounter: 0,
+                     author: @user)
+    @post.save
+  end
 
-#   describe "#update_commentscounter" do
-#     let(:comment) { create(:comment) }
+  subject { Comment.new(text: 'Lets see if commenting work', author: @user, post: @post) }
 
-#     it "increments the comments counter of the associated post" do
-#       expect { comment.update_commentscounter }.to change { comment.post.commentscounter }.by(1)
-#     end
-#   end
-# end
+  before { subject.save }
+
+  it 'comments shoulld be increment by 1' do
+    expect(subject.post.commentscounter).to eq(1)
+  end
+
+  it 'cannot update comments counter because it is a private method' do
+    expect(subject).not_to respond_to(:update_commentscount)
+  end
+end
