@@ -4,6 +4,11 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :post
 
+  # validations
+  validates :author, presence: true
+  validates :post, presence: true
+  validates :content, presence: true
+
   private
 
   def update_commentscounter
