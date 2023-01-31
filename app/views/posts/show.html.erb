@@ -1,4 +1,13 @@
 <div>
-  <h1 class="font-bold text-4xl">Posts#show</h1>
-  <p>Find me in app/views/posts/show.html.erb</p>
+  <h1>Post</h1>
+  <h2 class="font-bold text-4xl"><%= @post.title %> <span class="text-lg">(<%= @likes.count %> likes)</span></h2>
+  <p class="text-lg py-2"><%= @post.content %></p>
+  <h3 class="font-bold text-2xl">Comments</h3>
+  <ul class="list-none">
+    <% @comments.each do |comment| %>
+      <li class="text-lg py-2">
+        <%= comment.content %>
+      </li>
+    <% end %>
+  </ul>
 </div>

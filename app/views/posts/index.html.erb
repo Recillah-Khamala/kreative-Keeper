@@ -1,4 +1,10 @@
 <div>
-  <h1 class="font-bold text-4xl">Posts#index</h1>
-  <p>Find me in app/views/posts/index.html.erb</p>
+  <h1 class="font-bold text-4xl">Posts from <%= @author %></h1>
+  <ul class="list-none">
+    <% @posts.each do |post| %>
+      <li class="text-lg py-2">
+        <%= post.title %>
+      </li>
+    <% end %>
+  </ul> 
 </div>
