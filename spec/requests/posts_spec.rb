@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'Posts', type: :request do
-
   describe 'GET #index' do
     before { get '/users/3/posts' }
 

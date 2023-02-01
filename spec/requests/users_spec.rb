@@ -20,7 +20,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET #show' do
     before { get '/users/4' }
 
-    it 'returns a successful response' do   
+    it 'returns a successful response' do
       expect(response).to be_successful
     end
 
