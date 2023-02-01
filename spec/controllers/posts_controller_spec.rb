@@ -27,22 +27,13 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:comment) { FactoryBot.create(:comment, post_id: post.id, author: user) }
-    let(:like) { FactoryBot.create(:like, post_id: post.id) }
+    before { get :show, params: { user_id: user.id, id: post.id } }
 
-    before do
-      post
-      comment
-      like
-    end
-
-    it 'returns http success' do
-      get :show, params: { user_id: user.id, id: post.id }
-      expect(response).to have_http_status(:success)
+    it 'returns a success response' do
+      expect(response).to be_successful
     end
 
     it 'renders the show template' do
-      get :show, params: { user_id: user.id, id: post.id }
       expect(response).to render_template(:show)
     end
   end

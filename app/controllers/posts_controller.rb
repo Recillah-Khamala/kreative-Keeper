@@ -5,11 +5,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    author = poster
-    post_id = params[:id]
-    @post = Post.where(id: post_id, author:).order('id DESC').first
-    @comments = Comment.where(id: post_id, author:)
-    @likes = Like.where(id: post_id, author:)
+    @post = Post.find_by(id: params[:id])
+    return unless @post.nil?
+
+    'post is nil'
   end
 
   def poster
