@@ -1,17 +1,9 @@
 class PostsController < ApplicationController
   def index
-    author = poster
-    @posts = Post.where(author)
+    @post = Post.all
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
-    return unless @post.nil?
-
-    'post is nil'
-  end
-
-  def poster
-    params[:user]
+    params[:id]
   end
 end
