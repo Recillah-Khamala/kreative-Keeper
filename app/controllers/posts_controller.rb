@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def show
     author = poster
     post_id = params[:id]
-    @post = Post.where(id: post_id, author: author).order('id DESC').first
-    @comments = Comment.where(id: post_id, author: author)
-    @likes = Like.where(id: post_id, author: author)
+    @post = Post.where(id: post_id, author:).order('id DESC').first
+    @comments = Comment.where(id: post_id, author:)
+    @likes = Like.where(id: post_id, author:)
   end
 
   def poster
