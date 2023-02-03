@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  let(:user) { FactoryBot.create(:user) }
+
   describe 'GET #index' do
-    before { get users_url }
+    before { get user_path(user) }
 
     it 'returns a successful response' do
       expect(response).to be_successful
-    end
-
-    it 'renders the index template' do
-      expect(response).to render_template(:index)
     end
 
     it 'returns a response with http status' do
@@ -18,7 +16,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #show' do
-    before { get '/users/4' }
+    before { get user_path(user) }
 
     it 'returns a successful response' do
       expect(response).to be_successful

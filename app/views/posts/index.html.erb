@@ -1,4 +1,15 @@
-<div>
-  <h1 class="font-bold text-4xl">Posts#index</h1>
-  <p>Find me in app/views/posts/index.html.erb</p>l> 
-</div>
+<section>
+  <%= render 'common/user', user: @user%>
+    <ul class="gap-3">
+      <% @posts.each do |post| %>
+        <li class="border list-none mt-4 hover:bg-slate-200 rounded-md">
+            <%= link_to user_post_path(@user, post) do %>
+                <%= render 'common/post', post: post%>
+                <hr>
+                <%= render 'common/comments', comments: post.recent_comments %>
+            <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <button class="bg-slate-500 text-white px-20 py-1 rounded shadow mt-5 hover:bg-slate-600 active:scale-105">Pagination</button>
+</section>

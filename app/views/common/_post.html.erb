@@ -1,0 +1,10 @@
+<div class="gap-4 rounded-md">
+  <h3 class="font-bold">Post #<%= post.id%></h3>
+  <br>
+  <div>
+    <h4><%= post.title%></h4>
+    <br>
+    <p><%= post.text %></p>
+      <%= render 'common/likes', post: post%>
+  </div>
+</div>
