@@ -1,4 +1,13 @@
-<div>
-  <h1 class="font-bold text-4xl">Comments#new</h1>
-  <p>Find me in app/views/comments/new.html.erb</p>
-</div>
+<h1>New Comment</h1>
+
+<%= form_with model: @comment, url: users_posts_comments_url do |form|%>
+
+    <div class="my-2">
+        <%= form.label :text %> <br>
+        <%= form.text_area :text, placeholder:'comment'%>
+    </div>
+
+    <div>
+       <%= form.submit "Submit ", class: "bg-blue-600 text-white rounded shadow px-3 py-1" %>
+    </div>
+<% end %>
