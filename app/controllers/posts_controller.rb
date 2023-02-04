@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     @post.commentscounter = 0
 
     if @post.save
+      flash[:success] = 'post added successfully'
       redirect_to users_posts_path
     else
       render :new, status: :unprocessable_entity
