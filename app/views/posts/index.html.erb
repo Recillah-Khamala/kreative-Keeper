@@ -1,6 +1,6 @@
 <section class="hover:text-white px-8 py-8">
   <%= render 'common/user', user: @user%>
-  <%= link_to "Create Post", new_user_post_path, class: "uppercase bg-green-600 text-slate-100 text-lg hover:bg-green-500 active:scale-105 ml-auto px-3 py-1 rounded block w-2/5 mt-5 text-center" %>
+  <%= link_to "Create Post", new_user_post_path, class: "uppercase bg-slate-600 text-slate-100 text-lg hover:bg-slate-500 active:scale-105 ml-auto px-3 py-1 rounded block w-2/5 mt-5 text-center" %>
   <ul class="gap-3">
     <% @posts.each do |post| %>
       <li class="border list-none mt-4 hover:bg-slate-200 text-black rounded-md">

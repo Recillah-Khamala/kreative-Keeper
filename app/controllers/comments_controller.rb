@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = 'Comment added successfully'
-      redirect_to users_posts_path(current_user.id, params[:post_id])
+      redirect_to user_posts_path(params[:user_id], params[:post_id])
     else
       render :new, status: :unprocessable_entity
     end

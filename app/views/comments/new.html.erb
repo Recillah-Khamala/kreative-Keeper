@@ -1,6 +1,6 @@
 <h1>New Comment</h1>
 
-<%= form_with model: @comment, url: users_posts_comments_url do |form|%>
+<%= form_with model: @comment, url: user_post_comments_url do |form|%>
 
     <div class="my-2">
         <%= form.label :text %> <br>
@@ -8,6 +8,6 @@
     </div>
 
     <div>
-       <%= form.submit "Submit ", class: "bg-blue-600 text-white rounded shadow px-3 py-1" %>
+       <%= form.submit "Submit ", class: "bg-slate-600 text-white rounded shadow px-3 py-1" %>
     </div>
 <% end %>

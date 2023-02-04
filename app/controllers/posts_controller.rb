@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def create_post
+  def create
     @post = Post.new(poster)
     @post.author = current_user
     @post.likescounter = 0
@@ -24,8 +24,9 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = 'post added successfully'
-      redirect_to users_posts_path
+      redirect_to "/users/#{@post.author.id}/posts/#{@post.id}"
     else
+      flash[:success] = 'post was not added'
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,6 +34,6 @@ class PostsController < ApplicationController
   private
 
   def poster
-    params.require(:post).permit(title, :text)
+    params.require(:post).permit(:title, :text)
   end
 end
