@@ -5,9 +5,13 @@
       <%= render 'common/likes', post:@post%>
     </div>
     <br>
+    <%= form_with url: users_posts_likes_path(@post.author, @post) method: :post do |form|%>
+      <%= form.submit "like", class: "bg-green-500 text-white rounded shadow px-2 block ml-auto text-lg cursor-pointer"%>
+    <% end %>
     <p class="pb-6 mt-5"><%= @post.text %></p>
   </div>
   <div class="border mt-6">
     <%= render 'common/comments', comments: @post.comments %>
   </div>
+  <%= link_to "Add comment", new_users_posts_comments_path(@user, @post), class: "px-3 py-1 bg-blue-600 rounded text-white mt-8 mb-2 w-1/5 block ml-auto"%>
 </section>

@@ -1,0 +1,23 @@
+<h1>New Post</h1>
+
+<%= form_with model: @post, url: user_posts_path do |form|%>
+    <div>
+        <%= form.label :title %> <br>
+        <%= form.text_field :title, placeholder:'title'%>
+        <% @post.errors.full_messages_for(:title).each do |message|%>
+            <p><%= message%></p>
+        <% end %>
+    </div>
+
+    <div class="my-2">
+        <%= form.label :text %> <br>
+        <%= form.text_area :text, placeholder:'text'%>
+        <% @post.errors.full_messages_for(:text).each do |message|%>
+            <p><%= message%></p>
+        <% end %>
+    </div>
+
+    <div>
+       <%= form.submit "Submit ", class: "bg-blue-600 text-white rounded shadow px-3 py-1" %>
+    </div>
+<% end %>
