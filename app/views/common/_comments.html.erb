@@ -1,0 +1,8 @@
+<ul class="py-2 px-3 rounded-md">
+  <% comments.each do |comment|%>
+    <div>
+      <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
+      <span><%= comment.text %></span>
+    </div>
+  <% end %>
+</ul>

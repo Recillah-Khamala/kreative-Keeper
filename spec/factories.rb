@@ -3,32 +3,44 @@ require_relative 'support/chrome'
 
 FactoryBot.define do
   factory :user do
-    name { 'Tom' }
-    photo { 'https://unsplash.com/photos/F_-0BxGuVvo' }
-    bio { 'Teacher from Mexico.' }
-    postscounter { 3 }
+    sequence(:id) do |n|
+      User.maximum(:id).to_i + n
+    end
+    name { Faker::Name.name }
+    photo { Faker::LoremFlickr.image }
+    bio { Faker::Lorem.paragraph }
+    postscounter { 0 }
+    after(:create) do |user, evaluator|
+      create_list(:post, evaluator.postscounter, user:)
+    end
   end
 
   factory :post do
+    sequence(:id) do |n|
+      Post.maximum(:id).to_i + n
+    end
     title { Faker::Lorem.sentence }
     text { Faker::Lorem.paragraph }
+    author_id { user.id }
+    likescounter { 0 }
+    after(:create) do |post, evaluator|
+      create_list(:like, evaluator.likescounter, post:)
+    end
+    commentscounter { 0 }
+    after(:create) do |post, evaluator|
+      create_list(:comment, evaluator.commentscounter, post:)
+    end
+  end
+
+  factory :comment do
+    author { Faker::Name.name }
+    text { Faker::Lorem.sentence }
     association :author, factory: :user
-    likescounter { rand(100) }
-    commentscounter { rand(100) }
+    association :post
   end
 
-  FactoryBot.define do
-    factory :comment do
-      author { Faker::Name.name }
-      text { Faker::Lorem.sentence }
-      post_id { post.id }
-    end
-  end
-
-  FactoryBot.define do
-    factory :like do
-      association :author, factory: :user
-      association :post
-    end
+  factory :like do
+    association :author, factory: :user
+    association :post
   end
 end

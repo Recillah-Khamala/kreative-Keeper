@@ -1,2 +1,13 @@
-<p>Find me in app/views/posts/show.html.erb</p>
-
+<section class="rounded-md hover:text-white px-8 py-8">
+  <div class="border px-4 pt-4">
+    <div class="justify-between flex">
+      <h3 class="text-2xl">Post #<%= @post.id%> by <%=@post.author.name %></h3>
+      <%= render 'common/likes', post:@post%>
+    </div>
+    <br>
+    <p class="pb-6 mt-5"><%= @post.text %></p>
+  </div>
+  <div class="border mt-6">
+    <%= render 'common/comments', comments: @post.comments %>
+  </div>
+</section>
