@@ -1,4 +1,4 @@
-<section class="post-container">
+<section class="post-container px-8 hover:text-white">
   <%= render "common/user", user: @user %>
   <div>
     <div class="border px-4 py-4 my-4">
@@ -14,7 +14,7 @@
       <% end %>
     </ul>
     <%= link_to user_posts_path(@user) do %>
-      <button class="bg-slate-500 text-white px-3 py-1 rounded shadow mt-5 hover:bg-slate-600 active:scale-105">See all posts</button>
+      <button class="bg-slate-500 text-white mx-32 px-24 py-1 rounded shadow mt-5 hover:bg-slate-600 active:scale-105">See all posts</button>
     <% end %>
   </div>
 </section>

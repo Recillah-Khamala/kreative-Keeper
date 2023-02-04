@@ -1,8 +1,8 @@
-<h1 class="users font-bold text-3xl">All Users </h1>
+<h1 class="users font-bold text-3xl py-10 px-24 capitalize" >All Users </h1>
 <br>
-<ul>
+<ul class="pb-5 ">
   <% @users.each do |user| %>
-    <li class="mb-4 hover:bg-slate-200">
+    <li class="mb-4 mt-2 hover:text-white">
       <%= link_to user_path(user) do %>
         <%= render "common/user", user: user %>
       <% end %>

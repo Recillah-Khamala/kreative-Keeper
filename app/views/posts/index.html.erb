@@ -1,8 +1,8 @@
-<section>
+<section class="hover:text-white px-8 py-8">
   <%= render 'common/user', user: @user%>
     <ul class="gap-3">
       <% @posts.each do |post| %>
-        <li class="border list-none mt-4 hover:bg-slate-200 rounded-md">
+        <li class="border list-none mt-4 hover:bg-slate-200 text-black rounded-md">
             <%= link_to user_post_path(@user, post) do %>
                 <%= render 'common/post', post: post%>
                 <hr>
@@ -11,5 +11,5 @@
         </li>
       <% end %>
     </ul>
-  <button class="bg-slate-500 text-white px-20 py-1 rounded shadow mt-5 hover:bg-slate-600 active:scale-105">Pagination</button>
+  <button class="bg-slate-500 text-white px-20 py-1 mx-32 rounded shadow mt-5 hover:bg-slate-600 active:scale-105">Pagination</button>
 </section>
