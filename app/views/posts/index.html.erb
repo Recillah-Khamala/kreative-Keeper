@@ -1,13 +1,41 @@
 <section class="hover:text-white px-8 py-8">
-  <%= render 'common/user', user: @user%>
+  <div class="gap-4 flex flex-row w-full">
+    <div class="w-1/12">
+      <%= image_tag @user.photo, atl: "#{@user.name}-avatar", class: "block w-[90px] h-24" %>
+    </div>
+
+    <div class="w-11/12 border flex-row flex rounded-md">
+      <h3 class="name text-2xl w-1/2 font-bold tracking-wider leading-10 py-6 pl-6"><%= @user.name %></h3>
+      <span class="w-1/2 flex justify-end px-4 pt-10">Number of posts <%= @user.postscounter %></span>
+    </div>
+  </div>
   <%= link_to "Create Post", new_user_post_path, class: "uppercase bg-slate-600 text-slate-100 text-lg hover:bg-slate-500 active:scale-105 ml-auto px-3 py-1 rounded block w-2/5 mt-5 text-center" %>
   <ul class="gap-3">
     <% @posts.each do |post| %>
       <li class="border list-none mt-4 hover:bg-slate-200 text-black rounded-md">
           <%= link_to user_post_path(@user, post) do %>
-              <%= render 'common/post', post: post%>
-              <hr>
-              <%= render 'common/comments', comments: post.recent_comments %>
+            <div class="gap-4 rounded-md">
+              <h3 class="font-bold">Post #<%= post.id%></h3>
+              <br>
+              <div>
+                <h4><%= post.title%></h4>
+                <br>
+                <p><%= post.text %></p>
+                <div class="text-like text-right pr-2 pl-40 rounded-md">
+                  <span>Comments: <%= post.commentscounter%>,</span>
+                  <span>Likes: <%= post.likescounter%></span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <% post.comments.last(5).each do |comment| %>
+              <ul class="py-2 px-3 rounded-md">
+                <div>
+                  <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
+                  <span><%= comment.text %></span>
+                </div>
+              </ul>
+            <% end %>
           <% end %>
       </li>
     <% end %>

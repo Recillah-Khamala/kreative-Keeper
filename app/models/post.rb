@@ -1,9 +1,8 @@
 class Post < ApplicationRecord
   after_save :update_postscounter
 
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, class_name: 'User', counter_cache: true
   has_many :comments
-  has_many :likes
 
   # validations
   validates :title, presence: true, length: { maximum: 250 }
