@@ -27,7 +27,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'finds the correct user' do
-      expect(response.body).to include('Users#show')
+      expect(response.body).to include('Users details')
     end
   end
 end
