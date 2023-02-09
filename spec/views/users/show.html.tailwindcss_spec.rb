@@ -3,11 +3,16 @@ require 'rails_helper'
 RSpec.describe 'Specific User', type: :feature do
   describe 'Show Page' do
     before(:each) do
-      @user1 = User.create! name: 'Tom', photo: 'https://source.unsplash.com/user/c_v_r/100x100', bio: 'Tom bio', postscounter: 0
-      @user2 = User.create! name: 'Lilly', photo: 'https://i.picsum.photos/id/216/200/300.jpg?hmac', bio: 'Lilly bio', postscounter: 0
-      @post1 = Post.create! title: 'Post 1', text: 'Post content goes here', commentscounter: 0, likescounter: 0, author_id: @user1.id
-      @post2 = Post.create! title: 'Post 2', text: 'Post content goes here', commentscounter: 0, likescounter: 0, author_id: @user1.id
-      @post3 = Post.create! title: 'Post 3', text: 'Post content goes here', commentscounter: 0, likescounter: 0, author_id: @user2.id
+      @user1 = User.create! name: 'Tom', photo: 'https://source.unsplash.com/user/c_v_r/100x100', bio: 'Tom bio',
+                            postscounter: 0
+      @user2 = User.create! name: 'Lilly', photo: 'https://i.picsum.photos/id/216/200/300.jpg?hmac', bio: 'Lilly bio',
+                            postscounter: 0
+      @post1 = Post.create! title: 'Post 1', text: 'Post content goes here', commentscounter: 0, likescounter: 0,
+                            author_id: @user1.id
+      @post2 = Post.create! title: 'Post 2', text: 'Post content goes here', commentscounter: 0, likescounter: 0,
+                            author_id: @user1.id
+      @post3 = Post.create! title: 'Post 3', text: 'Post content goes here', commentscounter: 0, likescounter: 0,
+                            author_id: @user2.id
       @user1.save
       @user2.save
       @post1.save
@@ -25,7 +30,7 @@ RSpec.describe 'Specific User', type: :feature do
     end
 
     it 'displays the number of posts the user has written' do
-      expect(page).to have_content("Number of posts 4")
+      expect(page).to have_content('Number of posts 4')
     end
 
     it 'displays the user\'s bio' do
@@ -39,7 +44,7 @@ RSpec.describe 'Specific User', type: :feature do
     end
 
     it 'displays a button to view all of a user\'s posts' do
-      expect(page).to have_link("See all posts", href: user_posts_path(@user1))
+      expect(page).to have_link('See all posts', href: user_posts_path(@user1))
     end
 
     it 'redirects to a post\'s show page when clicking a post' do
@@ -48,9 +53,8 @@ RSpec.describe 'Specific User', type: :feature do
     end
 
     it 'redirects to the user\'s post index page when clicking the view all posts button' do
-      click_link("See all posts", href: user_posts_path(@user1))
+      click_link('See all posts', href: user_posts_path(@user1))
       expect(page).to have_current_path(user_posts_path(@user1))
     end
   end
 end
-
