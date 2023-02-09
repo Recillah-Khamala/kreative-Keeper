@@ -13,7 +13,6 @@ Rails.application.configure do
     #                 :password => 'bullets_password_for_jabber',
     #                 :receiver => 'your_account@jabber.org',
     #                 :show_online_status => true }
-    Bullet.rails_logger  = true
     # Bullet.honeybadger   = true
     # Bullet.bugsnag       = true
     # Bullet.appsignal     = true
@@ -92,4 +91,10 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.assets.debug = true
+  # configuring devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # configuring letter opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end
