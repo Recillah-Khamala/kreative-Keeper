@@ -163,6 +163,13 @@ to be added
 - Twitter: [@recillahk](https://twitter.com/recillahk)
 - LinkedIn: [Recillah Khamala](https://www.linkedin.com/in/recillah-khamala/)
 
+👤 **Kasaija Kenneth**
+
+  - GitHub: [@Kasaija-Kenneth](https://github.com/Kasaija-Kenneth)
+  - LinkedIn: [LinkedIn](https://linkedin.com/in/kasaija-kenneth)
+  - Twitter: [@kenn_ug](https://twitter.com/kenn_ug)
+  - Email:  <a href="mailto:kasaijak@gmail.com?subject=The%20subject%20of%20the%20mail">Send me a message:</a>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
