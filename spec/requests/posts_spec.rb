@@ -1,8 +1,23 @@
 require 'rails_helper'
 
-describe 'Posts', type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:post) { FactoryBot.create(:post, author: user) }
+RSpec.describe 'Posts', type: :request do
+  let(:user) do
+    User.create(
+      name: 'Recillah',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      bio: 'A Ruby on Rails enthusiast',
+      postscounter: 0
+    )
+  end
+  let(:post) do
+    Post.create(
+      title: 'my title',
+      text: 'all about Ruby',
+      commentscounter: 0,
+      likescounter: 0,
+      author_id: user.id
+    )
+  end
 
   before(:each) do
     post.save

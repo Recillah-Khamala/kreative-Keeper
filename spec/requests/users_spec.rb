@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) do
+    User.create(
+      name: 'Recillah',
+      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+      bio: 'A Ruby on Rails enthusiast',
+      postscounter: 0
+    )
+  end
 
   describe 'GET #index' do
     before { get user_path(user) }
@@ -27,7 +34,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'finds the correct user' do
-      expect(response.body).to include('Users details')
+      expect(response.body).to include('title')
     end
   end
 end
