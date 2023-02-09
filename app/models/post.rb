@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   after_save :update_postscounter
 
-  belongs_to :author, class_name: 'User', counter_cache: true
+  belongs_to :author, class_name: 'User'
   has_many :comments
 
   # validations
