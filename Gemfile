@@ -57,6 +57,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'xmpp4r'
+  gem "database_cleaner"
 end
 gem 'rails-controller-testing'
 
