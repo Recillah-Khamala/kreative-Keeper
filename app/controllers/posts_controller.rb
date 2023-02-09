@@ -1,15 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find_by(id: params[:user_id])
-    if @user.nil?
-      render json: { error: 'User not found' }, status: :not_found
-    else
-      @posts = @user.posts
-    end
+    @user = User.find(params[:user_id])
+    @posts = Post.where(author_id: params[:user_id]).includes(comments: [:author])
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(%i[author comments]).find(params[:id])
+    @comments = @post.comments.order('created_at DESC')
   end
 
   def new
@@ -17,10 +14,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(poster)
+    @post = Post.new(params.require(:post).permit(:title, :text))
     @post.author = current_user
-    @post.likescounter = 0
-    @post.commentscounter = 0
 
     if @post.save
       flash[:success] = 'post added successfully'
@@ -29,11 +24,5 @@ class PostsController < ApplicationController
       flash[:success] = 'post was not added'
       render :new, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def poster
-    params.require(:post).permit(:title, :text)
   end
 end

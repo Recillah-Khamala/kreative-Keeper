@@ -9,7 +9,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     photo { Faker::LoremFlickr.image }
     bio { Faker::Lorem.paragraph }
-    postscounter { 0 }
+    postscounter { Faker::Number.between(from: 1, to: 10) }
     after(:create) do |user, evaluator|
       create_list(:post, evaluator.postscounter, user:)
     end

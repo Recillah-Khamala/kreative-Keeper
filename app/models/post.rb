@@ -3,7 +3,6 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: 'User'
   has_many :comments
-  has_many :likes
 
   # validations
   validates :title, presence: true, length: { maximum: 250 }
