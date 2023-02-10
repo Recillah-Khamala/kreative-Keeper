@@ -9,7 +9,9 @@
       <span class="w-1/2 flex justify-end px-4 pt-10">Number of posts <%= @user.postscounter %></span>
     </div>
   </div>
-  <%= link_to "Create Post", new_user_post_path, class: "uppercase bg-slate-600 text-slate-100 text-lg hover:bg-slate-500 active:scale-105 ml-auto px-3 py-1 rounded block w-2/5 mt-5 text-center" %>
+  <% if current_user.id == @user.id %>
+    <%= link_to "Create Post", new_user_post_path, class: "uppercase bg-slate-600 text-slate-100 text-lg hover:bg-slate-500 active:scale-105 ml-auto px-3 py-1 rounded block w-2/5 mt-5 text-center" %>
+  <% end %>
   <ul class="gap-3">
     <% @posts.each do |post| %>
       <li class="border list-none mt-4 hover:bg-slate-200 text-black rounded-md">
@@ -34,6 +36,10 @@
                   <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
                   <span><%= comment.text %></span>
                 </div>
+                <% if can? :destroy, post %>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  <%= button_to "Delete", user_post_comment_path(@user, post, comment), method: :delete, data: {confirm: Do you want to delete the comment? } %>
+                </button>
               </ul>
             <% end %>
           <% end %>
