@@ -14,21 +14,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :text))
-    @post.author = current_user
+    post = Post.new(params.require(:post).permit(:title, :text))
+    post.author = current_user
+    post.author_id = current_user.id
 
-    if @post.save
+    if post.save
       flash[:success] = 'post added successfully'
-      redirect_to "/users/#{@post.author.id}/posts/#{@post.id}"
+      redirect_to "/users/#{@post.author.id}/posts"
     else
-      flash[:success] = 'post was not added'
+      flash[:error] = 'post was not added'
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    if @post.destroy
+    post = Post.find(params[:id])
+    if post.destroy
       redirect_to user_posts_path, notice: "Post was deleted"
     else
       flash.now[:error] = "Error: Post not deleted"
