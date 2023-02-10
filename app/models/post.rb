@@ -25,4 +25,3 @@ class Post < ApplicationRecord
     author.decrement!(:postscounter)
   end
 end
-

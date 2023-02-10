@@ -87,5 +87,5 @@ end
 gem 'tailwindcss-rails'
 
 # add devise
-gem 'devise'
 gem 'cancancan'
+gem 'devise'
