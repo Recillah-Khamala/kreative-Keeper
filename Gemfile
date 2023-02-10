@@ -66,7 +66,7 @@ group :development do
   gem 'web-console'
 
   gem 'bullet'
-  
+
   # letter opener
   gem 'letter_opener'
 
@@ -87,4 +87,4 @@ end
 gem 'tailwindcss-rails'
 
 # add devise
-gem 'devise'
+gem 'devise', '~> 4.7', '>= 4.7.3'
