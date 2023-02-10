@@ -1,11 +1,14 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: params[:user_id]).includes(comments: [:author])
   end
 
   def show
-    @post = Post.includes(%i[author comments]).find(params[:id])
+    @user = User.find(params[:user_id])
+    @post = Post.includes([:author]).find(params[:id])
     @comments = @post.comments.order('created_at DESC')
   end
 
@@ -14,16 +17,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(params.require(:post).permit(:title, :text))
-    post.author = current_user
-    post.author_id = current_user.id
-
-    if post.save
-      flash[:success] = 'post added successfully'
-      redirect_to "/users/#{@post.author.id}/posts"
+    @post = Post.new(post_params)
+    @post.author = current_user
+    @post.commentscounter = 0
+    @post.likescounter = 0
+    if @post.save
+      flash[:success] = 'Post Added Successfully'
+      redirect_to user_posts_path(current_user)
     else
-      flash[:error] = 'post was not added'
-      render :new, status: :unprocessable_entity
+      flash.now[:error] = 'Post could not be added'
+      render :new
     end
   end
 
@@ -34,5 +37,11 @@ class PostsController < ApplicationController
     else
       flash.now[:error] = "Error: Post not deleted"
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end

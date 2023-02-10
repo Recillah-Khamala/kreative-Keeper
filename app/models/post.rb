@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  after_save :inrease_postscounter
+  after_save :increase_postscounter
   after_destroy :decrease_postscounter
 
   belongs_to :author, class_name: 'User'

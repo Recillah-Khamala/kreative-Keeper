@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(commenter)
-    @post = Post.find(params[:post_id])
+    @post = Post.includes([:author]).find(params[:post_id])
     @comment.post = @post
     @comment.author = current_user
 
@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by!(post_id: params[:post_id], id: params[:id])
     if @comment.destroy
-      redirect_to user_posts_path, notice: "comment was deleted"
+      redirect_to user_post_path, notice: "comment was deleted"
     else
       flash.now[:error] = 'Error: Comment not deleted'
     end

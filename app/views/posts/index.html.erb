@@ -15,35 +15,33 @@
   <ul class="gap-3">
     <% @posts.each do |post| %>
       <li class="border list-none mt-4 hover:bg-slate-200 text-black rounded-md">
-          <%= link_to user_post_path(@user, post) do %>
-            <div class="gap-4 rounded-md">
-              <h3 class="font-bold">Post #<%= post.id%></h3>
-              <br>
-              <div>
-                <h4><%= post.title%></h4>
-                <br>
-                <p><%= post.text %></p>
-                <div class="text-like text-right pr-2 pl-40 rounded-md">
-                  <span>Comments: <%= post.commentscounter%>,</span>
-                  <span>Likes: <%= post.likescounter%></span>
-                </div>
-              </div>
+        <div class="gap-4 rounded-md">
+          <h3 class="font-bold">Post #<%= post.id%></h3>
+          <br>
+          <div>
+            <h4><%= link_to "#{post.title}", user_post_path(@user, post) %></h4>
+            <br>
+            <p><%= post.text %></p>
+            <div class="text-like text-right pr-2 pl-40 rounded-md">
+              <span>Comments: <%= post.commentscounter%>,</span>
+              <span>Likes: <%= post.likescounter%></span>
+              <% if can? :destroy, post %>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  <%= button_to "Delete", user_post_path(@user, post), method: :delete, data: {confirm: "Do you want to delete the comment?" } %>
+                </button>
+              <% end %>
             </div>
-            <hr>
-            <% post.comments.last(5).each do |comment| %>
-              <ul class="py-2 px-3 rounded-md">
-                <div>
-                  <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
-                  <span><%= comment.text %></span>
-                </div>
-                <% if can? :destroy, post %>
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                    <%= button_to "Delete", user_post_comment_path(@user, post, comment), method: :delete, data: {confirm: "Do you want to delete the comment?" } %>
-                  </button>
-                  <% end %>
-              </ul>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <hr>
+        <% post.comments.last(5).each do |comment| %>
+          <ul class="py-2 px-3 rounded-md">
+            <div>
+              <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
+              <span><%= comment.text %></span>
+            </div>
+          </ul>
+        <% end %>
       </li>
     <% end %>
   </ul>
