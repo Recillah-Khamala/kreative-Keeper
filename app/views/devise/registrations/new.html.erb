@@ -4,16 +4,18 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field mt-5 w-4/5">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, placeholder: "Name", class: "w-full pt-2" %>
+     <%= f.label :name %><br />
+    U <%= f.text_field :name, placeholder: "Name", class: "w-full pt-2" %>
   </div>
-   <div class="field, mt-5 w-4/5">
-      <%= f.label :bio %><br />
-      <%= f.text_area :bio, placeholder: 'bio', class: "w-full pt-2"%>
+
+  <div class="field mt-5 w-4/5">
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio, placeholder: 'bio', class: "w-full"%>
   </div>
-   <div class="field, mt-5 w-4/5">
-      <%= f.label :photo %><br />
-      <%= f.text_field :photo, placeholder: 'photo url', class: "w-full pt-2"%>
+
+  <div class="field mt-5 w-4/5">
+    <%= f.label :photo %><br />
+    <%= f.text_field :photo, placeholder: 'photo url', class: "w-full"%>
   </div>
 
   <div class="field, mt-5 w-4/5">

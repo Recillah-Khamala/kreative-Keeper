@@ -295,7 +295,7 @@ DEPENDENCIES
   capybara
   database_cleaner
   debug
-  devise (~> 4.7, >= 4.7.3)
+  devise
   factory_bot_rails
   faker
   importmap-rails

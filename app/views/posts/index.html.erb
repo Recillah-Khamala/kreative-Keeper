@@ -1,7 +1,7 @@
 <section class="hover:text-white px-8 py-8">
   <div class="gap-4 flex flex-row w-full">
     <div class="w-1/12">
-      <%= image_tag @user.photo, atl: "#{@user.name}-avatar", class: "block w-[90px] h-24" %>
+      <%= image_tag @user.photo || "/images/default_avatar.png", atl: "#{@user.name}-avatar", class: "block w-[90px] h-24" %>
     </div>
 
     <div class="w-11/12 border flex-row flex rounded-md">

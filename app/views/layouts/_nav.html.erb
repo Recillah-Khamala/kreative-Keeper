@@ -1,11 +1,10 @@
 <% if user_signed_in? %>
-    <header class="flex justify-between px-5 py-2 shadow-md items-center border border-slate-100 mb-6">
+    <header class="flex justify-between px-5 py-2 shadow-md items-center mb-6">
         <h1 class="font-bold text-xl">KreativeKeeper</h1>
 
         <nav class="flex justify-between">
             <div class="flex gap-4 mr-10">
                 <%= current_user.name %>
-                <img src="<%= current_user.photo%>" alt= <%="#{current_user.name}-avatar"%> class="block rounded-full w-[30px] h-[30px]">
             </div>
 
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "bg-blue-600 hover:bg-blue-500 text-white rounded px-2 py-1"%>

@@ -87,4 +87,4 @@ end
 gem 'tailwindcss-rails'
 
 # add devise
-gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'devise'
