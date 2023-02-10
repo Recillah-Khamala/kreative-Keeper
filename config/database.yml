@@ -25,9 +25,8 @@ development:
   <<: *default
   database: Kreative_Keeper_development
   username: postgres
-  password: 'Tab!th63'
+  password: 5721
   host: localhost
-  port: 5432
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -63,9 +62,8 @@ test:
   <<: *default
   database: Kreative_Keeper_test
   username: postgres
-  password: 'Tab!th63'
+  password: 5721
   host: localhost
-  port: 5432
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

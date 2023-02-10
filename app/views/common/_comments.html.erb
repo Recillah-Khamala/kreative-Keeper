@@ -1,8 +1,13 @@
 <ul class="py-2 px-3 rounded-md">
-  <% comments.each do |comment|%>
+  <% @comments.each do |comment|%>
     <div>
       <span class="author text-lg text-cyan-700 "><%= comment.author.name %></span>:
       <span><%= comment.text %></span>
+      <% if can? :destroy, comment %>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <%= button_to "Delete", user_post_comment_path(@user, @post, comment), method: :delete, data: {confirm: "Do you want to delete the comment?" } %>
+        </button>
+      <% end %>
     </div>
   <% end %>
 </ul>
