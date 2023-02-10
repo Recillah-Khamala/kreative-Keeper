@@ -1,7 +1,7 @@
 <section class="hover:text-white px-8 py-8">
   <div class="gap-4 flex flex-row w-full">
     <div class="w-1/12">
-      <%= image_tag @user.photo || "/images/default_avatar.png", atl: "#{@user.name}-avatar", class: "block w-[90px] h-24" %>
+      <%= image_tag "/images/kk1.png", atl: "#{@user.name}-avatar", class: "block w-[90px] h-24" %>
     </div>
 
     <div class="w-11/12 border flex-row flex rounded-md">
@@ -37,9 +37,10 @@
                   <span><%= comment.text %></span>
                 </div>
                 <% if can? :destroy, post %>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                  <%= button_to "Delete", user_post_comment_path(@user, post, comment), method: :delete, data: {confirm: Do you want to delete the comment? } %>
-                </button>
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    <%= button_to "Delete", user_post_comment_path(@user, post, comment), method: :delete, data: {confirm: "Do you want to delete the comment?" } %>
+                  </button>
+                  <% end %>
               </ul>
             <% end %>
           <% end %>
