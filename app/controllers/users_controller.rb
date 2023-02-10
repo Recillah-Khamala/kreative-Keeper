@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:posts).order('id ASC')
+    if user_signed_in?
+      @users = User.order('id ASC')
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def show
