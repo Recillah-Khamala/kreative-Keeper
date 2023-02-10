@@ -17,6 +17,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      redirect_to user_posts_path, notice: "comment was deleted"
+    else
+      flash.now[:error] = 'Error: Comment not deleted'
+    end
+  end
+
   private
 
   def commenter

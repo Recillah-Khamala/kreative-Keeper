@@ -25,4 +25,13 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to user_posts_path, notice: "Post was deleted"
+    else
+      flash.now[:error] = "Error: Post not deleted"
+    end
+  end
 end

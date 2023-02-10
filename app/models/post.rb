@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  after_save :update_postscounter
+  after_save :inrease_postscounter
+  after_destroy :decrease_postscounter
 
   belongs_to :author, class_name: 'User'
   has_many :comments
@@ -16,7 +17,12 @@ class Post < ApplicationRecord
 
   private
 
-  def update_postscounter
+  def increase_postscounter
     author.increment!(:postscounter)
   end
+
+  def decrease_postscounter
+    author.decrement!(:postscounter)
+  end
 end
+
