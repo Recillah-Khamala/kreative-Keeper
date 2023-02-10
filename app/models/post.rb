@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   after_destroy :decrease_postscounter
 
   belongs_to :author, class_name: 'User'
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   # validations
   validates :title, presence: true, length: { maximum: 250 }
