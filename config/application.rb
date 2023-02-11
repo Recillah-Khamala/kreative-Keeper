@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module KreativeKeeper
   class Application < Rails::Application
+    config.api_only = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
