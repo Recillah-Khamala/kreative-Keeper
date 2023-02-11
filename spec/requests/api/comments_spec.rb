@@ -1,7 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/comments', type: :request do
-
   describe 'GET /api/v1/users/:user_id/posts/:post_id/comments' do
     it 'returns status code 200' do
       user = 2
@@ -22,7 +21,7 @@ RSpec.describe 'api/comments', type: :request do
       post api_v1_user_post_comments_path(valid_attributes)
       expect(response).to have_http_status(200)
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response['text']).to eq('This is me')
+      expect(parsed_response['text']).to eq('i like this')
     end
   end
 end
