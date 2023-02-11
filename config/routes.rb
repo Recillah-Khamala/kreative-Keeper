@@ -11,4 +11,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "users#index"
+  
+
+  # api related routes 
+  get 'api/v1/users/:id/posts', to: 'api/v1/posts#index'
+
 end
