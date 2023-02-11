@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   # api related routes 
   get 'api/v1/users/:id/posts', to: 'api/v1/posts#index'
+  get 'api/v1/users/:user_id/posts/:post_id/comments', to: 'api/v1/comments#index'
 
 end
