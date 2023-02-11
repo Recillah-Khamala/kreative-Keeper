@@ -89,3 +89,4 @@ gem 'tailwindcss-rails'
 # add devise
 gem 'cancancan'
 gem 'devise'
+gem 'rswag'
